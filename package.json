@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "gen:style": "npx @tailwindcss/cli -i input.css -o static/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.11",
+    "tw-animate-css": "^1.3.4"
+  }
+}
