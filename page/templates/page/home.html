@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% block content %} {% load page_tags %}
+<header class="border-b border-secondary">
+  <div class="container mx-auto max-wider:px-0 max-lg:px-8 max-sm:px-4">
+    <div class="flex items-center justify-between py-4">
+      <a href="{% url 'home' %}">
+        <h1 class="text-2xl font-bold text-primary">Albert.dev</h1>
+      </a>
+
+      <nav class="space-x-6 max-md:hidden">
+        <a href="#" class="group relative w-max">
+          <span>A propos de moi</span>
+          <span
+            class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-primary group-hover:w-3/6"
+          ></span>
+          <span
+            class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-primary group-hover:w-3/6"
+          ></span>
+        </a>
+        <a href="#" class="group relative w-max">
+          <span>Projets</span>
+          <span
+            class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-primary group-hover:w-3/6"
+          ></span>
+          <span
+            class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-primary group-hover:w-3/6"
+          ></span>
+        </a>
+        <a href="#" class="group relative w-max">
+          <span>Contacts</span>
+          <span
+            class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-primary group-hover:w-3/6"
+          ></span>
+          <span
+            class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-primary group-hover:w-3/6"
+          ></span>
+        </a>
+      </nav>
+      <div class="max-sm:hidden">{% network_links profile.id %}</div>
+
+      <div class="hidden max-md:block relative" x-data="{ open: false }">
+        <button
+          class="p-2 rounded-full bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
+          @click="open = !open"
+        >
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <div
+          x-show="open"
+          @click.outside="open = false"
+          x-transition
+          class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
+        >
+          <nav class="py-2">
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              >A propos de moi</a
+            >
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              >Projets</a
+            >
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              >Contacts</a
+            >
+          </nav>
+          <div class="border-t border-gray-200 p-4">
+            <span class="text-sm text-gray-600 hidden max-sm:block">Suivez-moi sur</span>
+            <div class="mt-4 hidden max-sm:block">
+                {% network_links profile.id %}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<main></main>
+{% endblock %}

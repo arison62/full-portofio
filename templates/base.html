@@ -1,16 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portfolio</title>
-        <link rel="stylesheet" href="{% static 'css/output.css' %}">
-        <script defer src="https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js"></script>
-        {% block extra_head %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block content %}
-        {% endblock %}
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Albert.dev</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    <script defer src="https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            lucide.createIcons();
+        });
+    </script>
+    {% block extra_head %} {% endblock %}
+</head>
+
+<body>
+    {% block content %} {% endblock %}
+</body>
+
 </html>
