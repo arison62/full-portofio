@@ -1,4 +1,5 @@
 asgiref==3.8.1
+Brotli==1.1.0
 dj-database-url==3.0.1
 Django==5.2.3
 django-cotton==2.1.2
@@ -10,3 +11,4 @@ python-decouple==3.8
 sqlparse==0.5.3
 typing_extensions==4.14.0
 uv==0.7.17
+whitenoise==6.9.0
