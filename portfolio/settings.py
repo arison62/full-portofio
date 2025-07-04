@@ -152,3 +152,9 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# Supabase settings
+SUPABASE_API_KEY = config('SUPABASE_API_KEY', default='')
+SUPABASE_URL = config('SUPABASE_URL', default='')
+SUPABASE_ROOT_PATH = config('SUPABASE_ROOT_PATH', default='/media/')
+DEFAULT_FILE_STORAGE = 'django_supabase.supabase' if not DEBUG else 'django.core.files.storage.FileSystemStorage'
