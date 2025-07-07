@@ -563,6 +563,12 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .\[testenv\:flake8\] {
+    testenv: flake8;
+  }
+  .\[tox\:\.package\] {
+    tox: .package;
+  }
   .running {
     animation-play-state: running;
   }

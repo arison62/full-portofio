@@ -14,6 +14,8 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-4628h5m8rsduo*-q6hm8kzn%rb$35)m)r0o^$9%-9_bx0rq=3a')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'page.apps.PageConfig',
 ]
 
@@ -145,16 +148,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files settings
 MEDIA_URL = '/media/'
 import os
-MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT  = os.path.join(BASE_DIR, '/media')
 
 STORAGES = {
       "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+    "default":{
+       "BACKEND": "storages.backends.s3.S3Storage" if not DEBUG else 'django.core.files.storage.FileSystemStorage',
+       "OPTIONS": {
+            "access_key": config("SUPABASE_S3_ACCESS_KEY_ID"),
+            "secret_key": config("SUPABASE_S3_SECRET_ACCESS_KEY"),
+            "bucket_name": config("SUPABASE_S3_BUCKET_NAME"),
+            "region_name": config("SUPABASE_S3_REGION_NAME"),
+            "endpoint_url": config("SUPABASE_S3_ENDPOINT_URL"),   
+        } if not DEBUG else {},
+    }
+
 }
 
-# Supabase settings
-SUPABASE_API_KEY = config('SUPABASE_API_KEY', default='')
-SUPABASE_URL = config('SUPABASE_URL', default='')
-SUPABASE_ROOT_PATH = config('SUPABASE_ROOT_PATH', default='/media/')
-DEFAULT_FILE_STORAGE = 'django_supabase.supabase' if not DEBUG else 'django.core.files.storage.FileSystemStorage'
+print("STORAGES:", STORAGES)
