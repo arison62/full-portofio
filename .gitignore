@@ -13,3 +13,4 @@ db.sqlite3
 *.swo
 infos.txt
 media/
+staticfiles
