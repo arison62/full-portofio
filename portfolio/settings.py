@@ -166,5 +166,3 @@ STORAGES = {
     }
 
 }
-
-print("STORAGES:", STORAGES)
